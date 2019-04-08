@@ -1,5 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeStylusPluginApp", "RealTimeStylusPluginApp.csproj", "{B535FFBF-A974-4919-BA6F-50E935E81154}"
 	ProjectSection(ProjectDependencies) = postProject
 		{10E52EC2-287A-4C86-93E6-B87B01C58053} = {10E52EC2-287A-4C86-93E6-B87B01C58053}
@@ -24,5 +26,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E0258B7E-71BE-416A-9A92-3A7B52BB9D65}
 	EndGlobalSection
 EndGlobal
