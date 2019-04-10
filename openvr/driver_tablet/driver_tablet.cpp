@@ -386,20 +386,20 @@ private:
 //-----------------------------------------------------------------------------
 // Purpose:
 //-----------------------------------------------------------------------------
-class CSampleControllerDriver : public vr::ITrackedDeviceServerDriver
+class CTabletControllerDriver : public vr::ITrackedDeviceServerDriver
 {
 public:
-	CSampleControllerDriver()
+	CTabletControllerDriver()
 	{
 		m_unObjectId = vr::k_unTrackedDeviceIndexInvalid;
 		m_ulPropertyContainer = vr::k_ulInvalidPropertyContainer;
 
 		m_sSerialNumber = "CTRL_1234";
 
-		m_sModelNumber = "MyController";
+		m_sModelNumber = "TabletModel";
 	}
 
-	virtual ~CSampleControllerDriver()
+	virtual ~CTabletControllerDriver()
 	{
 	}
 
@@ -422,16 +422,32 @@ public:
 		vr::VRProperties()->SetBoolProperty( m_ulPropertyContainer, Prop_NeverTracked_Bool, true );
 
 		// even though we won't ever track we want to pretend to be the right hand so binding will work as expected
-		vr::VRProperties()->SetInt32Property( m_ulPropertyContainer, Prop_ControllerRoleHint_Int32, TrackedControllerRole_RightHand );
+		vr::VRProperties()->SetInt32Property( m_ulPropertyContainer, Prop_ControllerRoleHint_Int32, TrackedControllerRole_OptOut);
 
 		// this file tells the UI what to show the user for binding this controller as well as what default bindings should
 		// be for legacy or other apps
-		vr::VRProperties()->SetStringProperty( m_ulPropertyContainer, Prop_InputProfilePath_String, "{sample}/input/mycontroller_profile.json" );
+		vr::VRProperties()->SetStringProperty( m_ulPropertyContainer, Prop_InputProfilePath_String, "{tablet}/input/tablet_profile.json" );
 
 		// create all the input components
-		vr::VRDriverInput()->CreateBooleanComponent( m_ulPropertyContainer, "/input/a/click", &m_compA );
-		vr::VRDriverInput()->CreateBooleanComponent( m_ulPropertyContainer, "/input/b/click", &m_compB );
-		vr::VRDriverInput()->CreateBooleanComponent( m_ulPropertyContainer, "/input/c/click", &m_compC );
+
+		//boolean components
+		
+		// note: in this context, 'touch' refers to when the stylus or finger are touching the screen- the stylus 'click' refers to when the stylus button is pressed.
+		// this has caveats:
+		//	1) finger/x,y cannot change without finger/touch being true
+		//	2) stylus/x,y CAN change without stylus/touch being true  (if it does, it is in air)
+
+		vr::VRDriverInput()->CreateBooleanComponent(m_ulPropertyContainer, "/input/stylus/click", &m_compStylusClick);
+		vr::VRDriverInput()->CreateBooleanComponent(m_ulPropertyContainer, "/input/stylus/touch", &m_compStylusTouch);
+		vr::VRDriverInput()->CreateBooleanComponent(m_ulPropertyContainer, "/input/finger/touch", &m_compFingerTouch);
+
+		// scalar components
+		vr::VRDriverInput()->CreateScalarComponent(m_ulPropertyContainer, "/input/stylus/x", &m_compStylusX, VRScalarType_Absolute, VRScalarUnits_NormalizedOneSided);
+		vr::VRDriverInput()->CreateScalarComponent(m_ulPropertyContainer, "/input/stylus/y", &m_compStylusY, VRScalarType_Absolute, VRScalarUnits_NormalizedOneSided);
+		vr::VRDriverInput()->CreateScalarComponent(m_ulPropertyContainer, "/input/finger/x", &m_compFingerX, VRScalarType_Absolute, VRScalarUnits_NormalizedOneSided);
+		vr::VRDriverInput()->CreateScalarComponent(m_ulPropertyContainer, "/input/finger/y", &m_compFingerY, VRScalarType_Absolute, VRScalarUnits_NormalizedOneSided);
+
+
 
 		// create our haptic component
 		vr::VRDriverInput()->CreateHapticComponent( m_ulPropertyContainer, "/output/haptic", &m_compHaptic );
@@ -486,9 +502,9 @@ public:
 		// in to UpdateBooleanComponent. This could happen in RunFrame or on a thread of your own that's reading USB
 		// state. There's no need to update input state unless it changes, but it doesn't do any harm to do so.
 
-		vr::VRDriverInput()->UpdateBooleanComponent( m_compA, (0x8000 & GetAsyncKeyState( 'A' )) != 0, 0 );
-		vr::VRDriverInput()->UpdateBooleanComponent( m_compB, (0x8000 & GetAsyncKeyState( 'B' )) != 0, 0 );
-		vr::VRDriverInput()->UpdateBooleanComponent( m_compC, (0x8000 & GetAsyncKeyState( 'C' )) != 0, 0 );
+		//vr::VRDriverInput()->UpdateBooleanComponent( m_compA, (0x8000 & GetAsyncKeyState( 'A' )) != 0, 0 );
+		//vr::VRDriverInput()->UpdateBooleanComponent( m_compB, (0x8000 & GetAsyncKeyState( 'B' )) != 0, 0 );
+		//vr::VRDriverInput()->UpdateBooleanComponent( m_compC, (0x8000 & GetAsyncKeyState( 'C' )) != 0, 0 );
 #endif
 	}
 
@@ -515,9 +531,18 @@ private:
 	vr::TrackedDeviceIndex_t m_unObjectId;
 	vr::PropertyContainerHandle_t m_ulPropertyContainer;
 
-	vr::VRInputComponentHandle_t m_compA;
-	vr::VRInputComponentHandle_t m_compB;
-	vr::VRInputComponentHandle_t m_compC;
+
+	vr::VRInputComponentHandle_t m_compStylusTouch;
+	vr::VRInputComponentHandle_t m_compStylusClick;
+	vr::VRInputComponentHandle_t m_compFingerTouch;
+
+	vr::VRInputComponentHandle_t m_compStylusX;
+	vr::VRInputComponentHandle_t m_compStylusY;
+	vr::VRInputComponentHandle_t m_compFingerX;
+	vr::VRInputComponentHandle_t m_compFingerY;
+
+
+
 	vr::VRInputComponentHandle_t m_compHaptic;
 
 	std::string m_sSerialNumber;
@@ -542,7 +567,7 @@ public:
 
 private:
 	//CSampleDeviceDriver *m_pNullHmdLatest = nullptr;
-	CSampleControllerDriver *m_pController = nullptr;
+	CTabletControllerDriver *m_pController = nullptr;
 };
 
 CServerDriver_Sample g_serverDriverNull;
@@ -556,7 +581,7 @@ EVRInitError CServerDriver_Sample::Init( vr::IVRDriverContext *pDriverContext )
 	//m_pNullHmdLatest = new CSampleDeviceDriver();
 	//vr::VRServerDriverHost()->TrackedDeviceAdded( m_pNullHmdLatest->GetSerialNumber().c_str(), vr::TrackedDeviceClass_HMD, m_pNullHmdLatest );
 
-	m_pController = new CSampleControllerDriver();
+	m_pController = new CTabletControllerDriver();
 	vr::VRServerDriverHost()->TrackedDeviceAdded( m_pController->GetSerialNumber().c_str(), vr::TrackedDeviceClass_Controller, m_pController );
 
 	return VRInitError_None;
