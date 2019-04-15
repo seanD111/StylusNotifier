@@ -6,12 +6,15 @@
 #include <vector>
 #include <thread>
 #include <chrono>
+#include <map>
+#include <string>
 
 #if defined( _WINDOWS )
 #include <windows.h>
 #endif
 
 using namespace vr;
+using namespace std;
 
 
 #if defined(_WIN32)
@@ -397,6 +400,23 @@ public:
 		m_sSerialNumber = "CTRL_1234";
 
 		m_sModelNumber = "TabletModel";
+
+		m_boolCompMap.emplace("/input/stylus/barrel/click", nullptr);
+		m_boolCompMap.emplace("/input/stylus/eraser/click", nullptr);
+		m_boolCompMap.emplace("/input/stylus/surface/touch", nullptr);
+		m_boolCompMap.emplace("/input/finger/1/surface/touch", nullptr);
+
+		m_scalCompMap.emplace("/input/stylus/surface/value", nullptr);
+		m_scalCompMap.emplace("/input/stylus/position/x", nullptr);
+		m_scalCompMap.emplace("/input/stylus/position/y", nullptr);
+		m_scalCompMap.emplace("/input/finger/1/position/x", nullptr);
+		m_scalCompMap.emplace("/input/finger/1/position/y", nullptr);
+		m_scalCompMap.emplace("/input/finger/1/size/x", nullptr);
+		m_scalCompMap.emplace("/input/finger/1/size/y", nullptr);
+
+		m_scalCompMap.emplace("/input/surface/size/y", nullptr);
+		m_scalCompMap.emplace("/input/surface/size/x", nullptr);
+		
 	}
 
 	virtual ~CTabletControllerDriver()
@@ -428,25 +448,25 @@ public:
 		// be for legacy or other apps
 		vr::VRProperties()->SetStringProperty( m_ulPropertyContainer, Prop_InputProfilePath_String, "{tablet}/input/tablet_profile.json" );
 
-		// create all the input components
 
-		//boolean components
 		
-		// note: in this context, 'touch' refers to when the stylus or finger are touching the screen- the stylus 'click' refers to when the stylus button is pressed.
+		// note: in this context, 'surface/touch' refers to when the stylus or finger are touching the screen- the stylus 'barrel/click' refers to when the stylus button is pressed.
+		// stylus/surface/value refers to the amount of pressure being placed on the screen
 		// this has caveats:
-		//	1) finger/x,y cannot change without finger/touch being true
-		//	2) stylus/x,y CAN change without stylus/touch being true  (if it does, it is in air)
+		//	1) finger/#/position/x,y cannot change without finger/#/surface/touch being true
+		//	2) stylus/position/x,y CAN change without stylus/surface/touch being true  (if it does, it is in air)
 
-		vr::VRDriverInput()->CreateBooleanComponent(m_ulPropertyContainer, "/input/stylus/click", &m_compStylusClick);
-		vr::VRDriverInput()->CreateBooleanComponent(m_ulPropertyContainer, "/input/stylus/touch", &m_compStylusTouch);
-		vr::VRDriverInput()->CreateBooleanComponent(m_ulPropertyContainer, "/input/finger/touch", &m_compFingerTouch);
+		//for now, fingers only support a fixed quantity
 
-		// scalar components
-		vr::VRDriverInput()->CreateScalarComponent(m_ulPropertyContainer, "/input/stylus/x", &m_compStylusX, VRScalarType_Absolute, VRScalarUnits_NormalizedOneSided);
-		vr::VRDriverInput()->CreateScalarComponent(m_ulPropertyContainer, "/input/stylus/y", &m_compStylusY, VRScalarType_Absolute, VRScalarUnits_NormalizedOneSided);
-		vr::VRDriverInput()->CreateScalarComponent(m_ulPropertyContainer, "/input/finger/x", &m_compFingerX, VRScalarType_Absolute, VRScalarUnits_NormalizedOneSided);
-		vr::VRDriverInput()->CreateScalarComponent(m_ulPropertyContainer, "/input/finger/y", &m_compFingerY, VRScalarType_Absolute, VRScalarUnits_NormalizedOneSided);
+		for (auto & x : m_boolCompMap)
+		{
+			vr::VRDriverInput()->CreateBooleanComponent(m_ulPropertyContainer, x.first.c_str(), &x.second);
+		}
 
+		for (auto & x : m_boolCompMap)
+		{
+			vr::VRDriverInput()->CreateScalarComponent(m_ulPropertyContainer, x.first.c_str(), &x.second, VRScalarType_Absolute, VRScalarUnits_NormalizedOneSided);
+		}
 
 
 		// create our haptic component
@@ -531,17 +551,8 @@ private:
 	vr::TrackedDeviceIndex_t m_unObjectId;
 	vr::PropertyContainerHandle_t m_ulPropertyContainer;
 
-
-	vr::VRInputComponentHandle_t m_compStylusTouch;
-	vr::VRInputComponentHandle_t m_compStylusClick;
-	vr::VRInputComponentHandle_t m_compFingerTouch;
-
-	vr::VRInputComponentHandle_t m_compStylusX;
-	vr::VRInputComponentHandle_t m_compStylusY;
-	vr::VRInputComponentHandle_t m_compFingerX;
-	vr::VRInputComponentHandle_t m_compFingerY;
-
-
+	std::map<std::string, vr::VRInputComponentHandle_t> m_boolCompMap;
+	std::map<std::string, vr::VRInputComponentHandle_t> m_scalCompMap;
 
 	vr::VRInputComponentHandle_t m_compHaptic;
 
