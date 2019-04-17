@@ -401,21 +401,25 @@ public:
 
 		m_sModelNumber = "TabletModel";
 
-		m_boolCompMap.emplace("/input/stylus/barrel/click", nullptr);
-		m_boolCompMap.emplace("/input/stylus/eraser/click", nullptr);
-		m_boolCompMap.emplace("/input/stylus/surface/touch", nullptr);
-		m_boolCompMap.emplace("/input/finger/1/surface/touch", nullptr);
+		m_boolCompMap.emplace("/input/stylus/barrel/click", k_ulInvalidInputComponentHandle);
+		m_boolCompMap.emplace("/input/stylus/eraser/click", k_ulInvalidInputComponentHandle);
+		m_boolCompMap.emplace("/input/stylus/surface/touch", k_ulInvalidInputComponentHandle);
+		m_boolCompMap.emplace("/input/finger/1/surface/touch", k_ulInvalidInputComponentHandle);
+		m_boolCompMap.emplace("/input/mouse/surface/touch", k_ulInvalidInputComponentHandle);
+		
 
-		m_scalCompMap.emplace("/input/stylus/surface/value", nullptr);
-		m_scalCompMap.emplace("/input/stylus/position/x", nullptr);
-		m_scalCompMap.emplace("/input/stylus/position/y", nullptr);
-		m_scalCompMap.emplace("/input/finger/1/position/x", nullptr);
-		m_scalCompMap.emplace("/input/finger/1/position/y", nullptr);
-		m_scalCompMap.emplace("/input/finger/1/size/x", nullptr);
-		m_scalCompMap.emplace("/input/finger/1/size/y", nullptr);
+		m_scalCompMap.emplace("/input/mouse/position/x", k_ulInvalidInputComponentHandle);
+		m_scalCompMap.emplace("/input/mouse/position/y", k_ulInvalidInputComponentHandle);
+		m_scalCompMap.emplace("/input/stylus/surface/value", k_ulInvalidInputComponentHandle);
+		m_scalCompMap.emplace("/input/stylus/position/x", k_ulInvalidInputComponentHandle);
+		m_scalCompMap.emplace("/input/stylus/position/y", k_ulInvalidInputComponentHandle);
+		m_scalCompMap.emplace("/input/finger/1/position/x", k_ulInvalidInputComponentHandle);
+		m_scalCompMap.emplace("/input/finger/1/position/y", k_ulInvalidInputComponentHandle);
+		m_scalCompMap.emplace("/input/finger/1/size/x", k_ulInvalidInputComponentHandle);
+		m_scalCompMap.emplace("/input/finger/1/size/y", k_ulInvalidInputComponentHandle);
 
-		m_scalCompMap.emplace("/input/surface/size/y", nullptr);
-		m_scalCompMap.emplace("/input/surface/size/x", nullptr);
+		m_scalCompMap.emplace("/input/surface/size/y", k_ulInvalidInputComponentHandle);
+		m_scalCompMap.emplace("/input/surface/size/x", k_ulInvalidInputComponentHandle);
 		
 	}
 
