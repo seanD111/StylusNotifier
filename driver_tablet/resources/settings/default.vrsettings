@@ -1,0 +1,7 @@
+{
+	"driver_tablet" : {
+		"enable" : true,
+		"serialNumber" : "tablet1", 
+		"modelNumber" : "tablet"
+	}
+}

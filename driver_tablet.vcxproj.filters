@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{ee5f34c0-7e82-401a-974b-0d2d63154428}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\tablet">
+      <UniqueIdentifier>{666a7aa3-d75e-449a-a6ce-0b8cb578d203}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\osc">
+      <UniqueIdentifier>{d2091ae2-11dc-4e35-8c8c-f94100dfec8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\ip">
+      <UniqueIdentifier>{7cdf4560-e8bb-4928-bfbc-b0a17b1eefa4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\tablet\driver_tablet.cpp">
+      <Filter>Source\tablet</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tablet\driverlog.cpp">
+      <Filter>Source\tablet</Filter>
+    </ClCompile>
+    <ClCompile Include="src\osc\OscOutboundPacketStream.cpp">
+      <Filter>Source\osc</Filter>
+    </ClCompile>
+    <ClCompile Include="src\osc\OscPrintReceivedElements.cpp">
+      <Filter>Source\osc</Filter>
+    </ClCompile>
+    <ClCompile Include="src\osc\OscReceivedElements.cpp">
+      <Filter>Source\osc</Filter>
+    </ClCompile>
+    <ClCompile Include="src\osc\OscTypes.cpp">
+      <Filter>Source\osc</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\osc\MessageMappingOscPacketListener.h">
+      <Filter>Source\osc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\osc\OscException.h">
+      <Filter>Source\osc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\osc\OscHostEndianness.h">
+      <Filter>Source\osc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\osc\OscOutboundPacketStream.h">
+      <Filter>Source\osc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\osc\OscPacketListener.h">
+      <Filter>Source\osc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\osc\OscPrintReceivedElements.h">
+      <Filter>Source\osc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\osc\OscReceivedElements.h">
+      <Filter>Source\osc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\osc\OscTypes.h">
+      <Filter>Source\osc</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

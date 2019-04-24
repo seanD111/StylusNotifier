@@ -1,16 +1,16 @@
 {
   "jsonid": "input_profile",
-  "controller_type": "soft_knuckles",
-  "legacy_profile": "soft_knuckles",
-  "legacy_binding" :  "{soft_knuckles}/input/legacy_bindings_soft_knuckles.json",
+  "controller_type": "tablet",
+  "legacy_profile": "tablet",
+  "legacy_binding" :  "{tablet}/input/legacy_bindings_tablet.json",
   "input_bindingui_mode" : "controller_handed",
   "input_bindingui_left" :
   {
-    "image": "{soft_knuckles}/icons/knuckles_left.svg"
+    "image": "{tablet}/icons/knuckles_left.svg"
   },
   "input_bindingui_right" :
   {
-    "image": "{soft_knuckles}/icons/knuckles_right.svg"
+    "image": "{tablet}/icons/knuckles_right.svg"
   },
   "input_source" :
   {
