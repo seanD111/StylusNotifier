@@ -19,14 +19,25 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ip\IpEndpointName.cpp" />
+    <ClCompile Include="src\ip\win32\NetworkingUtils.cpp" />
+    <ClCompile Include="src\ip\win32\UdpSocket.cpp" />
     <ClCompile Include="src\osc\OscOutboundPacketStream.cpp" />
     <ClCompile Include="src\osc\OscPrintReceivedElements.cpp" />
     <ClCompile Include="src\osc\OscReceivedElements.cpp" />
     <ClCompile Include="src\osc\OscTypes.cpp" />
+    <ClCompile Include="src\tablet\CTabletControllerDriver.cpp" />
+    <ClCompile Include="src\tablet\CTabletControllerProvider.cpp" />
     <ClCompile Include="src\tablet\driverlog.cpp" />
     <ClCompile Include="src\tablet\driver_tablet.cpp" />
+    <ClCompile Include="src\tablet\OSCDeviceListener.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ip\IpEndpointName.h" />
+    <ClInclude Include="src\ip\NetworkingUtils.h" />
+    <ClInclude Include="src\ip\PacketListener.h" />
+    <ClInclude Include="src\ip\TimerListener.h" />
+    <ClInclude Include="src\ip\UdpSocket.h" />
     <ClInclude Include="src\osc\MessageMappingOscPacketListener.h" />
     <ClInclude Include="src\osc\OscException.h" />
     <ClInclude Include="src\osc\OscHostEndianness.h" />
@@ -35,6 +46,13 @@
     <ClInclude Include="src\osc\OscPrintReceivedElements.h" />
     <ClInclude Include="src\osc\OscReceivedElements.h" />
     <ClInclude Include="src\osc\OscTypes.h" />
+    <ClInclude Include="src\tablet\CTabletControllerDriver.h" />
+    <ClInclude Include="src\tablet\CTabletControllerProvider.h" />
+    <ClInclude Include="src\tablet\driverlog.h" />
+    <ClInclude Include="src\tablet\OSCDeviceListener.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lib\oscpack.lib" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A47C788B-1BDA-4057-87A9-FC35ED711B44}</ProjectGuid>
@@ -116,7 +134,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\seand\Documents\GitHub\TabletDriver\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
