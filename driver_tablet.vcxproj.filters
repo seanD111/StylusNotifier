@@ -8,10 +8,10 @@
       <UniqueIdentifier>{666a7aa3-d75e-449a-a6ce-0b8cb578d203}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\osc">
-      <UniqueIdentifier>{d2091ae2-11dc-4e35-8c8c-f94100dfec8f}</UniqueIdentifier>
+      <UniqueIdentifier>{ecd5176e-939f-4b0e-aa77-c53131015184}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\ip">
-      <UniqueIdentifier>{7cdf4560-e8bb-4928-bfbc-b0a17b1eefa4}</UniqueIdentifier>
+      <UniqueIdentifier>{e32eaa40-71b3-48e5-b5f0-b612e4e89a66}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -20,6 +20,24 @@
     </ClCompile>
     <ClCompile Include="src\tablet\driverlog.cpp">
       <Filter>Source\tablet</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tablet\OSCDeviceListener.cpp">
+      <Filter>Source\tablet</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tablet\CDeviceControllerProvider.cpp">
+      <Filter>Source\tablet</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tablet\CTabletControllerDriver.cpp">
+      <Filter>Source\tablet</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ip\IpEndpointName.cpp">
+      <Filter>Source\ip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ip\win32\NetworkingUtils.cpp">
+      <Filter>Source\ip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ip\win32\UdpSocket.cpp">
+      <Filter>Source\ip</Filter>
     </ClCompile>
     <ClCompile Include="src\osc\OscOutboundPacketStream.cpp">
       <Filter>Source\osc</Filter>
@@ -33,26 +51,35 @@
     <ClCompile Include="src\osc\OscTypes.cpp">
       <Filter>Source\osc</Filter>
     </ClCompile>
-    <ClCompile Include="src\tablet\CTabletControllerDriver.cpp">
-      <Filter>Source\tablet</Filter>
-    </ClCompile>
-    <ClCompile Include="src\tablet\CTabletControllerProvider.cpp">
-      <Filter>Source\tablet</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ip\IpEndpointName.cpp">
-      <Filter>Source\ip</Filter>
-    </ClCompile>
-    <ClCompile Include="src\tablet\OSCDeviceListener.cpp">
-      <Filter>Source\tablet</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ip\win32\NetworkingUtils.cpp">
-      <Filter>Source\ip</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ip\win32\UdpSocket.cpp">
-      <Filter>Source\ip</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\tablet\driverlog.h">
+      <Filter>Source\tablet</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tablet\OSCDeviceListener.h">
+      <Filter>Source\tablet</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tablet\CDeviceControllerProvider.h">
+      <Filter>Source\tablet</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tablet\CTabletControllerDriver.h">
+      <Filter>Source\tablet</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ip\IpEndpointName.h">
+      <Filter>Source\ip</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ip\NetworkingUtils.h">
+      <Filter>Source\ip</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ip\PacketListener.h">
+      <Filter>Source\ip</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ip\TimerListener.h">
+      <Filter>Source\ip</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ip\UdpSocket.h">
+      <Filter>Source\ip</Filter>
+    </ClInclude>
     <ClInclude Include="src\osc\MessageMappingOscPacketListener.h">
       <Filter>Source\osc</Filter>
     </ClInclude>
@@ -77,35 +104,5 @@
     <ClInclude Include="src\osc\OscTypes.h">
       <Filter>Source\osc</Filter>
     </ClInclude>
-    <ClInclude Include="src\tablet\driverlog.h">
-      <Filter>Source\tablet</Filter>
-    </ClInclude>
-    <ClInclude Include="src\tablet\CTabletControllerDriver.h">
-      <Filter>Source\tablet</Filter>
-    </ClInclude>
-    <ClInclude Include="src\tablet\CTabletControllerProvider.h">
-      <Filter>Source\tablet</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ip\IpEndpointName.h">
-      <Filter>Source\ip</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ip\NetworkingUtils.h">
-      <Filter>Source\ip</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ip\PacketListener.h">
-      <Filter>Source\ip</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ip\TimerListener.h">
-      <Filter>Source\ip</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ip\UdpSocket.h">
-      <Filter>Source\ip</Filter>
-    </ClInclude>
-    <ClInclude Include="src\tablet\OSCDeviceListener.h">
-      <Filter>Source\tablet</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="lib\oscpack.lib" />
   </ItemGroup>
 </Project>

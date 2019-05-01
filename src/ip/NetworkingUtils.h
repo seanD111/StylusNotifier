@@ -37,8 +37,6 @@
 #ifndef INCLUDED_OSCPACK_NETWORKINGUTILS_H
 #define INCLUDED_OSCPACK_NETWORKINGUTILS_H
 
-#define _WINSOCK_DEPRECATED_NO_WARNINGS
-
 
 // in general NetworkInitializer is only used internally, but if you're 
 // application creates multiple sockets from different threads at runtime you

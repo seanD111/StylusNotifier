@@ -1,6 +1,6 @@
 {
 	"alwaysActivate": true,
-	"name" : "driver_tablet",
+	"name" : "tablet",
 	"directory" : "",
 	"resourceOnly" : false,
 	"hmd_presence" : []

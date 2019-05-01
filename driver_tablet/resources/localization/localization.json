@@ -1,14 +1,15 @@
 [
   {
     "language_tag": "en_US",
-    "soft_knuckles" : "Soft Knuckles Controller",
-    "/input/a" : "A Button",
-    "/input/b" : "B Button",
-    "/input/pinch" : "Pinch Gesture",
-    "/input/finger/index" : "Index Finger",
-    "/input/finger/middle" : "Middle Finger",
-    "/input/finger/ring" : "Ring Finger",
-    "/input/finger/pinky" : "Pinky Finger",
-    "/input/thumbstick" : "Thumb Stick"
+    "tablet" : "Tablet Controller",
+    "/input/stylus/barrel": "Stylus Barrel Button",
+    "/input/stylus/eraser": "Stylus Eraser Button",
+    "/input/stylus/position": "Stylus Position",
+    "/input/stylus/surface": "Stylus Surface Contact",
+    "/input/finger/1/surface": "Finger 1 Contact",
+    "/input/finger/1/position": "Finger 1 Position",
+    "/input/finger/1/size": "Finger 1 Size",
+    "/input/mouse/surface": "Mouse Contact",
+    "/input/mouse/position": "Mouse Position"
   }
 ]

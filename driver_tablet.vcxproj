@@ -26,8 +26,8 @@
     <ClCompile Include="src\osc\OscPrintReceivedElements.cpp" />
     <ClCompile Include="src\osc\OscReceivedElements.cpp" />
     <ClCompile Include="src\osc\OscTypes.cpp" />
+    <ClCompile Include="src\tablet\CDeviceControllerProvider.cpp" />
     <ClCompile Include="src\tablet\CTabletControllerDriver.cpp" />
-    <ClCompile Include="src\tablet\CTabletControllerProvider.cpp" />
     <ClCompile Include="src\tablet\driverlog.cpp" />
     <ClCompile Include="src\tablet\driver_tablet.cpp" />
     <ClCompile Include="src\tablet\OSCDeviceListener.cpp" />
@@ -46,13 +46,10 @@
     <ClInclude Include="src\osc\OscPrintReceivedElements.h" />
     <ClInclude Include="src\osc\OscReceivedElements.h" />
     <ClInclude Include="src\osc\OscTypes.h" />
+    <ClInclude Include="src\tablet\CDeviceControllerProvider.h" />
     <ClInclude Include="src\tablet\CTabletControllerDriver.h" />
-    <ClInclude Include="src\tablet\CTabletControllerProvider.h" />
     <ClInclude Include="src\tablet\driverlog.h" />
     <ClInclude Include="src\tablet\OSCDeviceListener.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="lib\oscpack.lib" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A47C788B-1BDA-4057-87A9-FC35ED711B44}</ProjectGuid>
@@ -106,7 +103,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)\bin\drivers\sample\build\bin\win32\</OutDir>
+    <OutDir>$(SolutionDir)\bin\win32\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -135,6 +132,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\seand\Documents\GitHub\TabletDriver\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Ws2_32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

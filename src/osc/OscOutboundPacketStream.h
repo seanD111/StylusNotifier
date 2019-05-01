@@ -36,9 +36,8 @@
 */
 #ifndef INCLUDED_OSCPACK_OSCOUTBOUNDPACKETSTREAM_H
 #define INCLUDED_OSCPACK_OSCOUTBOUNDPACKETSTREAM_H
-#define _CRT_SECURE_NO_WARNINGS
 
-#include <string.h> // size_t
+#include <cstring> // size_t
 
 #include "OscTypes.h"
 #include "OscException.h"

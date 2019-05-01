@@ -1,7 +1,7 @@
 //============ Copyright (c) Valve Corporation, All rights reserved. ============
 
 #include <lib\openvr\openvr_driver.h>
-#include "CTabletControllerProvider.h"
+#include "CDeviceControllerProvider.h"
 #include "driverlog.h"
 
 #include <vector>
@@ -104,7 +104,7 @@ void CWatchdogDriver_Sample::Cleanup()
 }
 
 
-CTabletControllerProvider g_serverDriverNull;
+CDeviceControllerProvider g_serverDriverNull;
 
 //-----------------------------------------------------------------------------
 // Purpose:
