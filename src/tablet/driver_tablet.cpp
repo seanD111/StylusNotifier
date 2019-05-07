@@ -104,20 +104,23 @@ void CWatchdogDriver_Sample::Cleanup()
 }
 
 
-CDeviceControllerProvider g_serverDriverNull;
-
 //-----------------------------------------------------------------------------
 // Purpose:
 //-----------------------------------------------------------------------------
 HMD_DLL_EXPORT void *HmdDriverFactory( const char *pInterfaceName, int *pReturnCode )
 {
+	DriverLog("HmdDriverFactory %s\n", pInterfaceName);
+
+	static CDeviceControllerProvider s_device_provider; // single instance of the provider
+	static CWatchdogDriver_Sample s_watchdogDriverNull; // this is from sample code.
+
 	if( 0 == strcmp( vr::IServerTrackedDeviceProvider_Version, pInterfaceName ) )
 	{
-		return &g_serverDriverNull;
+		return &s_device_provider;
 	}
 	if( 0 == strcmp( vr::IVRWatchdogProvider_Version, pInterfaceName ) )
 	{
-		return &g_watchdogDriverNull;
+		return &s_watchdogDriverNull;
 	}
 
 	if( pReturnCode )

@@ -2,6 +2,6 @@
 	"tablet" : {
 		"enable" : true,
 		"serialNumber" : "tablet1s", 
-		"modelNumber" : "tablet1m"
+		"modelNumber" : "tablet"
 	}
 }

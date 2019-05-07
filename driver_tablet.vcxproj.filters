@@ -21,9 +21,6 @@
     <ClCompile Include="src\tablet\driverlog.cpp">
       <Filter>Source\tablet</Filter>
     </ClCompile>
-    <ClCompile Include="src\tablet\OSCDeviceListener.cpp">
-      <Filter>Source\tablet</Filter>
-    </ClCompile>
     <ClCompile Include="src\tablet\CDeviceControllerProvider.cpp">
       <Filter>Source\tablet</Filter>
     </ClCompile>
@@ -54,9 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\tablet\driverlog.h">
-      <Filter>Source\tablet</Filter>
-    </ClInclude>
-    <ClInclude Include="src\tablet\OSCDeviceListener.h">
       <Filter>Source\tablet</Filter>
     </ClInclude>
     <ClInclude Include="src\tablet\CDeviceControllerProvider.h">
@@ -103,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="src\osc\OscTypes.h">
       <Filter>Source\osc</Filter>
+    </ClInclude>
+    <ClInclude Include="source.h">
+      <Filter>Source\tablet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

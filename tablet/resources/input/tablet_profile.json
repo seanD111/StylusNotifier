@@ -1,0 +1,75 @@
+{
+  "jsonid": "input_profile",
+  "controller_type": "tablet",
+  "legacy_profile": "tablet",
+  "legacy_binding" :  "{tablet}/input/legacy_bindings_tablet.json",
+  "input_bindingui_mode" : "controller_handed",
+  "input_bindingui_left" :
+  {
+    "image": "{tablet}/icons/knuckles_left.svg"
+  },
+  "input_bindingui_right" :
+  {
+    "image": "{tablet}/icons/knuckles_right.svg"
+  },
+  "input_source" :
+  {
+
+    "/input/stylus/barrel": {
+        "type" : "button",
+        "binding_image_point" : [ 40, 42 ],
+        "order" : 5
+    },
+    "/input/stylus/eraser": {
+        "type" : "button",
+        "binding_image_point" : [ 26, 42 ],
+        "order" : 5
+    },
+    "/input/stylus/surface": {
+        "type" : "trigger",
+        "binding_image_point" : [ 11, 60 ],
+        "order" : 2
+    },
+    "/input/finger/1/surface": {
+        "type" : "trigger",
+        "binding_image_point" : [ 20, 60 ],
+        "order" : 2
+    },
+    "/input/mouse/surface": {
+        "type" : "trigger",
+        "binding_image_point" : [ 30, 60 ],
+        "order" : 2
+    },
+
+
+    // for accessing steamvr -specific functionality during use 
+    "/input/system": {
+        "type" : "button",
+        "binding_image_point" : [ 34,45 ],
+        "order" : 1
+    },
+
+    "/input/stylus/position": {
+        "type" : "trackpad",
+        "binding_image_point" : [ 20, 37 ],
+        "order" : 3
+    },
+
+    "/input/finger/1/position": {
+        "type" : "trackpad",
+        "binding_image_point" : [ 30, 37 ],
+        "order" : 3
+    },
+    "/input/mouse/position": {
+        "type" : "trackpad",
+        "binding_image_point" : [ 40, 37 ],
+        "order" : 3
+    },
+
+    "/input/finger/1/size": {
+        "type" : "trackpad",
+        "binding_image_point" : [ 30, 50 ],
+        "order" : 3
+    }
+  }
+ }

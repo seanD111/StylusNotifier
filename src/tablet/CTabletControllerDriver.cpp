@@ -35,6 +35,13 @@ CTabletControllerDriver::CTabletControllerDriver()
 	m_boolCompMap.emplace("/input/mouse/surface/touch", vr::k_ulInvalidInputComponentHandle);
 
 
+	// for accessing steamvr -specific functionality during use 
+	m_boolCompMap.emplace("/input/system/click", vr::k_ulInvalidInputComponentHandle);
+	m_boolCompMap.emplace("/input/system/touch", vr::k_ulInvalidInputComponentHandle);
+	m_boolCompMap.emplace("/input/application_menu/click", vr::k_ulInvalidInputComponentHandle);
+	m_boolCompMap.emplace("/input/application_menu/touch", vr::k_ulInvalidInputComponentHandle);
+
+
 	m_scalCompMap.emplace("/input/mouse/position/x", vr::k_ulInvalidInputComponentHandle);
 	m_scalCompMap.emplace("/input/mouse/position/y", vr::k_ulInvalidInputComponentHandle);
 	m_scalCompMap.emplace("/input/stylus/surface/value", vr::k_ulInvalidInputComponentHandle);
@@ -142,15 +149,15 @@ void CTabletControllerDriver::DebugRequest(const char *pchRequest, char *pchResp
 
 vr::DriverPose_t CTabletControllerDriver::GetPose()
 {
-	vr::DriverPose_t pose = { 0 };
-	pose.poseIsValid = false;
-	pose.result = vr::TrackingResult_Calibrating_OutOfRange;
-	pose.deviceIsConnected = true;
+	m_pose = { 0 };
+	m_pose.poseIsValid = false;
+	m_pose.result = vr::TrackingResult_Calibrating_OutOfRange;
+	m_pose.deviceIsConnected = true;
 
-	pose.qWorldFromDriverRotation = HmdQuaternion_Init(1, 0, 0, 0);
-	pose.qDriverFromHeadRotation = HmdQuaternion_Init(1, 0, 0, 0);
+	m_pose.qWorldFromDriverRotation = HmdQuaternion_Init(1, 0, 0, 0);
+	m_pose.qDriverFromHeadRotation = HmdQuaternion_Init(1, 0, 0, 0);
 
-	return pose;
+	return m_pose;
 }
 
 

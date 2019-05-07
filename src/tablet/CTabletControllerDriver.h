@@ -32,6 +32,7 @@ private:
 	std::map<std::string, vr::VRInputComponentHandle_t> m_scalCompMap;
 
 	vr::VRInputComponentHandle_t m_compHaptic;
+	vr::DriverPose_t m_pose;
 
 	std::string m_sSerialNumber;
 	std::string m_sModelNumber;

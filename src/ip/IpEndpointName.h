@@ -37,6 +37,8 @@
 #ifndef INCLUDED_OSCPACK_IPENDPOINTNAME_H
 #define INCLUDED_OSCPACK_IPENDPOINTNAME_H
 
+#define _CRT_SECURE_NO_WARNINGS
+
 
 class IpEndpointName{
     static unsigned long GetHostByName( const char *s );
