@@ -84,6 +84,7 @@ void CDeviceControllerProvider::ListenerThread()
 	DriverLog("CDeviceControllerProvider Starting listener thread\n");
 	OSCDeviceListener listener(this);
 	UdpListeningReceiveSocket socket_listener(IpEndpointName(IpEndpointName::ANY_ADDRESS, tablet_driver::listen_port), &listener);
+	receive_socket = &socket_listener;
 	socket_listener.RunUntilSigInt();
 }
 
@@ -157,8 +158,11 @@ vr::EVRInitError CDeviceControllerProvider::Init(vr::IVRDriverContext *pDriverCo
 void CDeviceControllerProvider::Cleanup()
 {
 	CleanupDriverLog();
-	//socket_listener.Break();
-	//listener_thread.join();
+	if (receive_socket != NULL) {
+		receive_socket->Break();
+	}
+	
+	listener_thread.join();
 	//delete m_pNullHmdLatest;
 	//m_pNullHmdLatest = NULL;
 	for (auto &x: m_pController) {
