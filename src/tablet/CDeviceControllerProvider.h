@@ -34,6 +34,6 @@ private:
 	std::thread listener_thread;
 	std::mutex lock;
 	//OSCDeviceListener notifier;
-	UdpListeningReceiveSocket *receive_socket;
+	UdpListeningReceiveSocket *receive_socket = nullptr;
 };
 

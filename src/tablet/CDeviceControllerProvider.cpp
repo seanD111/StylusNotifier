@@ -44,25 +44,30 @@ OSCDeviceListener::OSCDeviceListener(CDeviceControllerProvider *provider) {
 void OSCDeviceListener::ProcessMessage(const osc::ReceivedMessage& m,
 	const IpEndpointName& remoteEndpoint)
 {
-	DriverLog("OSCDeviceListener::ProcessMessage call \n");
 	try {
 		std::string address = std::string(m.AddressPattern());
-		DriverLog(std::string("Got " + address).c_str());
+		DriverLog(std::string("Got " + address+"\n").c_str());
 
+		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
 		osc::ReceivedMessage::const_iterator arg = m.ArgumentsBegin();
-		arg++;
-
 		
 
 		if (arg->IsBool()) {
-			to_notify->MessageReceived(address, arg->AsBool());
+			bool a = (arg++)->AsBoolUnchecked();
+			a ? DriverLog(std::string("Boolean true\n").c_str()) : DriverLog(std::string("Boolean false\n").c_str());
+			
+			to_notify->MessageReceived(address,a);
 		}
 		else if (arg->IsFloat()) {
-			to_notify->MessageReceived(address, arg->AsFloat());
+			float a = (arg++)->AsFloatUnchecked();
+			DriverLog(std::string("Float " + std::to_string(a) + "\n").c_str());
+			to_notify->MessageReceived(address, a);
 		}
 
 		else if (arg->IsDouble()) {
-			to_notify->MessageReceived(address, arg->AsDouble());
+			double a = (arg++)->AsDoubleUnchecked();
+			DriverLog(std::string("Double " + std::to_string(a) + "\n").c_str());
+			to_notify->MessageReceived(address, a);
 		}
 
 	}
@@ -89,7 +94,8 @@ void CDeviceControllerProvider::ListenerThread()
 }
 
 void CDeviceControllerProvider::AddDevice(std::string name) {
-	m_pController.emplace(name, CTabletControllerDriver());
+	DriverLog(std::string("Added Device "+ name + "\n").c_str());
+	m_pController[name] = CTabletControllerDriver();
 	vr::VRServerDriverHost()->TrackedDeviceAdded(
 		m_pController[name].GetSerialNumber().c_str(),
 		vr::TrackedDeviceClass_Controller,
@@ -158,7 +164,7 @@ vr::EVRInitError CDeviceControllerProvider::Init(vr::IVRDriverContext *pDriverCo
 void CDeviceControllerProvider::Cleanup()
 {
 	CleanupDriverLog();
-	if (receive_socket != NULL) {
+	if (receive_socket != nullptr) {
 		receive_socket->Break();
 	}
 	
